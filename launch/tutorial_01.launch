@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- arguments -->
+  <arg name="domain_path" default="$(find ros2_planning_system_examples)/common/domain_gateway.pddl"/>
+  <arg name="problem_path" default="$(find ros2_planning_system_examples)/common/problem_gateway_1.pddl"/>
+  
+  <!-- ROSPlan -->
+  <include file="$(find rosplan_planning_system)/launch/interfaced_planning_system.launch">
+    <arg name="domain_path"   value="$(arg domain_path)"/>
+    <arg name="problem_path"  value="$(arg problem_path)"/>
+  </include>
+  
+  <!-- Simulated actions -->
+  <include file="$(find ros2_planning_system_examples)/launch/simulated_action.launch">
+    <arg name="pddl_action_name" value="undock"/>
+    <arg name="action_duration" value="3"/>
+  </include>
+  
+  <include file="$(find ros2_planning_system_examples)/launch/simulated_action.launch">
+    <arg name="pddl_action_name" value="dock"/>
+    <arg name="action_duration" value="3"/>    
+  </include>
+  
+  <include file="$(find ros2_planning_system_examples)/launch/simulated_action.launch">
+    <arg name="pddl_action_name" value="localise"/>
+    <arg name="action_duration" value="3"/>
+  </include>
+  
+      
+  <include file="$(find ros2_planning_system_examples)/launch/simulated_action.launch">
+    <arg name="pddl_action_name" value="goto_waypoint"/>
+    <arg name="action_duration" value="3"/>
+  </include>  
+
+</launch>
+

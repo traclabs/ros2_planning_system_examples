@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- arguments -->
+  <arg name="model_file" default="$(find ros2_planning_system_examples)/common/inspection_domain.pddl"/>
+  <arg name="namespace" default=""/>
+  <arg name="task_params" default="$(find ros2_planning_system_examples)/config/simple_bt_example_task_params.yaml"/>
+  
+  <!-- true: There is a lifecycle management node for the Lifecycles nodes. If false, the nodes start on their own -->
+  <param name="lifecycle_enabled" value="true"/>  
+  
+  <!-- Planning / Executing -->
+  <include file="$(find plansys2_bringup)/launch/plansys2_bringup_launch_distributed.launch">
+    <arg name="model_file"   value="$(arg model_file)"/>
+    <arg name="namespace"  value="$(arg namespace)"/>
+  </include>
+  
+  <node name="move_1" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="move"/>
+      <param name="publisher_port" value="1668"/>
+      <param name="server_port" value="1669"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/move.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+    
+  <node name="move_2" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="move"/>
+      <param name="publisher_port" value="1670"/>
+      <param name="server_port" value="1671"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/move.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+
+  <node name="move_3" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="move"/>
+      <param name="publisher_port" value="1672"/>
+      <param name="server_port" value="1673"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/move.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+
+  <node name="transport_1" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="transport"/>
+      <param name="publisher_port" value="1674"/>
+      <param name="server_port" value="1675"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/transport.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+
+  <node name="transport_2" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="transport"/>
+      <param name="publisher_port" value="1676"/>
+      <param name="server_port" value="1677"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/transport.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+
+
+  <node name="transport_3" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="transport"/>
+      <param name="publisher_port" value="1678"/>
+      <param name="server_port" value="1679"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/transport.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+
+  <node name="assemble_1" pkg="ros2_planning_system_examples" type="assembly_action_node" output="screen"> 
+      <param name="action_name" value="assemble"/>  
+  </node>
+
+  <node name="assemble_2" pkg="ros2_planning_system_examples" type="assembly_action_node" output="screen"> 
+        <param name="action_name" value="assemble"/>  
+  </node>
+
+  <node name="assemble_3" pkg="ros2_planning_system_examples" type="assembly_action_node" output="screen"> 
+        <param name="action_name" value="assemble"/>  
+  </node>
+
+  <node name="recharge_1" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="recharge"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/tests/recharge.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+  </node>
+
+
+
+
+</launch>
+
