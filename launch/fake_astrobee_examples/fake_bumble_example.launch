@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- arguments -->
+  <arg name="model_file" default="$(find ros2_planning_system_examples)/common/astrobee_inspection.pddl"/>
+  <arg name="namespace" default=""/>
+  
+  <!-- true: There is a lifecycle management node for the Lifecycles nodes. If false, the nodes start on their own -->
+  <param name="lifecycle_enabled" value="true"/>  
+  
+  <!-- Planning / Executing -->
+  <include file="$(find plansys2_bringup)/launch/plansys2_bringup_launch_distributed.launch">
+    <arg name="model_file"   value="$(arg model_file)"/>
+    <arg name="namespace"  value="$(arg namespace)"/>
+  </include>
+  
+  
+  <!-- Robot Actions for Bumble -->
+  <node name="move_to_inspect_bumble" pkg="ros2_planning_system_examples" type="fake_astrobee_move_to_inspect_action_node" output="screen"> 
+      <param name="action_name" value="move_to_inspect"/>
+      <param name="robot_name" value="bumble"/>  
+     <rosparam param="specialized_arguments">["bumble", "", ""]</rosparam>  
+  </node>
+
+</launch>
+

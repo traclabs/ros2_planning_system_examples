@@ -35,9 +35,10 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-
+######################################
 ## BT Simple Example
-
+######################################
+# Actions
 add_library(bt_simple_example_recharge_node SHARED src/simple_bt_example/Recharge.cpp)
 list(APPEND plugin_libs bt_simple_example_recharge_node)
 
@@ -61,13 +62,23 @@ endforeach()
 add_executable(assembly_action_node src/simple_bt_example/assembly_action_node.cpp)
 target_link_libraries(assembly_action_node ${catkin_LIBRARIES})
 
-### Controller node for bt_simple_example ###
+# Controller node for bt_simple_example
+# (just for easy firing up of a problem and its subsequent execution. You could do this manually)
 add_executable(simple_bt_example_controller_node src/simple_bt_example/simple_bt_example_controller_node.cpp)
 target_link_libraries(simple_bt_example_controller_node ${catkin_LIBRARIES})
 
-#add_executable(move_to_inspect_action_node src/tests/move_to_inspect/move_to_inspect_action_node.cpp)
-#target_link_libraries(move_to_inspect_action_node ${catkin_LIBRARIES} )
 
+#########################################
+## Fake Astrobee Examples
+#########################################
+
+# Action for move_inspect
+add_executable(fake_astrobee_move_to_inspect_action_node src/fake_astrobee_examples/fake_astrobee_move_to_inspect_action_node.cpp)
+target_link_libraries(fake_astrobee_move_to_inspect_action_node ${catkin_LIBRARIES} )
+
+# Control node for astrobee examples
+add_executable(astrobee_move_to_inspect_control_node src/fake_astrobee_examples/astrobee_move_to_inspect_control_node.cpp)
+target_link_libraries(astrobee_move_to_inspect_control_node ${catkin_LIBRARIES} )
 
 
 install(TARGETS 

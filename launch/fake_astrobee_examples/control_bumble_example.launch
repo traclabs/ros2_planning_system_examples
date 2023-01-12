@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- arguments -->
+  <arg name="problem_pkg" default="ros2_planning_system_examples"/>
+  <arg name="problem_path" default="common/astrobee_inspection_problem_bumble.pddl"/>
+  
+  
+  <node name="astrobee_move_to_inspect_control_node" pkg="ros2_planning_system_examples" type="astrobee_move_to_inspect_control_node" output="screen"> 
+      <param name="problem_pkg" value="$(arg problem_pkg)"/>
+      <param name="problem_path" value="$(arg problem_path)"/>  
+  </node>
+
+
+
+</launch>
+
