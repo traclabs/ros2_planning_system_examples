@@ -1,32 +1,33 @@
 waypoints:
 
     - name: "wp0"
-      pos: [10.5, -8.5, 4.5]
-      rot: [-0.38, 0.0, 0.92, 0.0]
-      frame: world
-
-    - name: "wp1"
-      pos: [10.5, -7.5, 4.5]
-      rot: [-0.38, 0.0, 0.92, 0.0]
-      frame: world
-
-    - name: "wp2"
-      pos: [10.5, -6.5, 4.5]
-      rot: [-0.38, 0.0, 0.92, 0.0]
-      frame: world
-
-    - name: "wp3"
       pos: [11.5, -7.0, 5.0]
       rot: [0.0, 0.38, 0.0, 0.92]
       frame: world
 
-    - name: "wp4"
+    - name: "wp1"
+      pos: [10.5, -8.5, 4.5]
+      rot: [-0.38, 0.0, 0.92, 0.0]
+      frame: world
+
+    - name: "wp2"
       pos: [11.5, -6.0, 5.0]
       rot: [0.0, 0.38, 0.0, 0.92]
       frame: world
 
-    - name: "wp5"
+
+    - name: "wp3"
+      pos: [10.5, -7.5, 4.5]
+      rot: [-0.38, 0.0, 0.92, 0.0]
+      frame: world
+      
+    - name: "wp4"
       pos: [11.5, -5.0, 5.0]
       rot: [0.0, 0.38, 0.0, 0.92]
+      frame: world      
+
+    - name: "wp5"
+      pos: [10.5, -6.5, 4.5]
+      rot: [-0.38, 0.0, 0.92, 0.0]
       frame: world
 
