@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- arguments -->
+  <arg name="model_file" default="$(find ros2_planning_system_examples)/common/astrobee_inspection.pddl"/>
+  <arg name="namespace" default=""/>
+  <arg name="task_params" default="$(find ros2_planning_system_examples)/config/astrobee_move_to_inspect_task_params.yaml"/>
+
+  <!-- Rviz and params -->
+  <include file="$(find ros2_planning_system_examples)/launch/astrobee_examples/bumble_viz.launch"/>
+
+  
+  <!-- true: There is a lifecycle management node for the Lifecycles nodes. If false, the nodes start on their own -->
+  <param name="lifecycle_enabled" value="true"/>  
+  
+  <!-- Planning / Executing -->
+  <include file="$(find plansys2_bringup)/launch/plansys2_bringup_launch_distributed.launch">
+    <arg name="model_file"   value="$(arg model_file)"/>
+    <arg name="namespace"  value="$(arg namespace)"/>
+  </include>
+  
+  <!-- Robot Actions for Bumble -->  
+  <node name="move_to_inspect_bumble" pkg="plansys2_bt_actions" type="bt_action_node" output="screen"> 
+      <param name="action_name" value="move_to_inspect"/>
+      <param name="publisher_port" value="1678"/>
+      <param name="server_port" value="1679"/>
+      <param name="bt_xml_file" value="$(find ros2_planning_system_examples)/behavior_trees_xml/move_to_inspect.xml"/>      
+      <rosparam command="load" file="$(arg task_params)"/>
+      <rosparam param="specialized_arguments">["bumble", "", ""]</rosparam>
+
+  </node>   
+  
+  <!-- [Optional] Debug: Show waypoints to where Astrobee is going -->
+  <node name="debug_go_to_waypoint" pkg="ros2_planning_system_examples" type="debug_go_to_waypoint" output="screen"/> 
+
+</launch>
+

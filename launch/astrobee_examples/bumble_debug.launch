@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="robot" default="bumble"/>
+  <arg name="wp" default="wp0"/>
+  <!-- ************************************************************** -->
+
+
+  <node name="debug_go_to_waypoint"
+	pkg="ros2_planning_system_examples"
+	type="debug_go_to_waypoint"
+	respawn="false" output="screen">
+    <param name="robot" value="$(arg robot)"/>
+    <param name="wp" value="$(arg wp)"/>
+  </node>
+
+</launch>

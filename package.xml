@@ -20,5 +20,7 @@
   <depend>plansys2_executor</depend>
   <depend>plansys2_planner</depend>
   <depend>plansys2_msgs</depend>
-  
+  <depend>tf</depend>
+
+  <depend>ff_msgs</depend>
 </package>

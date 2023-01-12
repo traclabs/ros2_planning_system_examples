@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="rviz" default="true"/>
+  
+  <!-- ************************************************************** -->
+
+  <!-- Load the points we wish to visit -->
+  <rosparam command="load" file="$(find ros2_planning_system_examples)/config/inspection_waypoints.yaml"/>
+
+
+
+  <group if="$(arg rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" respawn="false" output="screen" launch-prefix="nice" args="-d $(find ros2_planning_system_examples)/rviz/bumble_example.rviz"/>
+  </group>
+
+</launch>

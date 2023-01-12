@@ -14,6 +14,8 @@ set(DEPS
   plansys2_executor
   plansys2_planner
   plansys2_msgs
+  tf
+  ff_msgs
   )
 
 find_package(
@@ -54,11 +56,6 @@ list(APPEND plugin_libs bt_simple_example_open_gripper_node)
 add_library(bt_simple_example_approach_object_node SHARED src/simple_bt_example/ApproachObject.cpp)
 list(APPEND plugin_libs bt_simple_example_approach_object_node)
 
-foreach(bt_plugin ${plugin_libs})
-  target_link_libraries(${bt_plugin} ${catkin_LIBRARIES})
-  target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
-endforeach()
-
 add_executable(assembly_action_node src/simple_bt_example/assembly_action_node.cpp)
 target_link_libraries(assembly_action_node ${catkin_LIBRARIES})
 
@@ -79,6 +76,27 @@ target_link_libraries(fake_astrobee_move_to_inspect_action_node ${catkin_LIBRARI
 # Control node for astrobee examples
 add_executable(astrobee_move_to_inspect_control_node src/fake_astrobee_examples/astrobee_move_to_inspect_control_node.cpp)
 target_link_libraries(astrobee_move_to_inspect_control_node ${catkin_LIBRARIES} )
+
+#########################################
+## Astrobee Examples
+#########################################
+
+add_library(bt_astrobee_navigate_node SHARED src/astrobee_examples/navigate_node.cpp)
+list(APPEND plugin_libs bt_astrobee_navigate_node)
+
+# Debug node for astrobee examples
+add_executable(debug_go_to_waypoint src/astrobee_examples/debug_go_to_waypoint.cpp)
+target_link_libraries(debug_go_to_waypoint ${catkin_LIBRARIES} )
+
+#########################################
+# For all BT plugins
+#########################################
+foreach(bt_plugin ${plugin_libs})
+  target_link_libraries(${bt_plugin} ${catkin_LIBRARIES})
+  target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
+endforeach()
+
+
 
 
 install(TARGETS 

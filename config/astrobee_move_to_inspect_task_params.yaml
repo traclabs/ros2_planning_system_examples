@@ -1,0 +1,8 @@
+move_to_inspect_honey:
+    plugins:
+      - bt_astrobee_navigate_node
+
+move_to_inspect_bumble:
+    plugins:
+      - bt_astrobee_navigate_node
+
